@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bol Accelerator | Strategic Dropshipping Infrastructure</title>
+    <style>
+        :root {
+            /* Brand Palette */
+            --deep-blue: #0A1128;
+            --secondary-blue: #1C2B4B;
+            --accent-blue: #3B82F6; /* Bright electric blue */
+            --accent-glow: #60A5FA;
+            --white: #FFFFFF;
+            --light-grey: #F3F4F6;
+            --text-main: #1F2937;
+            --text-muted: #9CA3AF;
+            
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(10, 17, 40, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-grey);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+            background: #2563EB;
+        }
+
+        .text-accent { color: var(--accent-blue); }
+        .text-white { color: var(--white); }
+        .text-muted { color: var(--text-muted); }
+
+        /* --- HERO SECTION (Inspiration Style) --- */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 0%, #1e3a8a 0%, var(--deep-blue) 60%);
+            overflow: hidden;
+            padding: 80px 20px;
+        }
+
+        /* Background Abstract Elements */
+        .hero-bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        /* Glass Card Container */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .glass-card h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .glass-card p {
+            font-size: 1.25rem;
+            color: #D1D5DB;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        /* Input/CTA Area similar to image */
+        .cta-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 12px;
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .cta-container input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0 16px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .cta-container input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- SECTIONS --- */
+        section { padding: 100px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--deep-blue);
+            margin-bottom: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* Cards */
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #E5E7EB;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--deep-blue);
+        }
+
+        .feature-card p {
+            color: #4B5563;
+            font-size: 1rem;
+        }
+
+        /* --- SPLIT SECTION (AI & Strategy) --- */
+        .split-section {
+            background: white;
+        }
+        
+        .split-container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .split-content { flex: 1; }
+        .split-image { 
+            flex: 1; 
+            height: 400px;
+            background: #F3F4F6;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #E5E7EB;
+        }
+        
+        /* Mock AI Interface Visual */
+        .mock-interface {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 60%;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .mock-line { height: 8px; background: #E5E7EB; border-radius: 4px; margin-bottom: 12px; width: 100%; }
+        .mock-line.short { width: 60%; }
+        .mock-line.blue { background: var(--accent-blue); width: 40%; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--deep-blue);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .glass-card h1 { font-size: 2.5rem; }
+            .split-container { flex-direction: column; }
+            .hero { padding: 40px 20px; }
+            .cta-container { flex-direction: column; gap: 10px; background: transparent; border: none; padding: 0;}
+            .cta-container input { 
+                background: rgba(255,255,255,0.1); 
+                padding: 15px; 
+                border-radius: 6px; 
+                border: 1px solid var(--glass-border);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-glow"></div>
+
+        <div class="glass-card">
+            <div style="font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-glow); font-weight: 600;">
+                Bol Accelerator
+            </div>
+            
+            <h1>The Landscape Has Evolved. <br><span class="text-accent">So Should Your Strategy.</span></h1>
+            
+            <p>
+                We combine the return of viable dropshipping logistics with proprietary AI infrastructure. 
+                A private, 1-on-1 accelerator for the modern entrepreneur.
+            </p>
+
+            <form class="cta-container">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Apply for a Seat</button>
+            </form>
+
+            <div style="margin-top: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+                Currently accepting Q1 applications. No hype. No spam.
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Built on Three Pillars</h2>
+                <p class="text-muted">We don't rely on hacks. We rely on market structure.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Logistics Evolution</h3>
+                    <p>
+                        Dropshipping on Bol is viable again. Faster, reliable suppliers have emerged, making the "no-inventory" model safe and scalable. We are early, not sneaky.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Infrastructure</h3>
+                    <p>
+                        Identify opportunities instantly. We leverage AI to reduce manual research and accelerate execution. Position AI as your unfair business advantage.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Private Accelerator</h3>
+                    <p>
+                        This is not a video course or mass coaching. We work 1-on-1 with entrepreneurs to build custom roadmaps based on your capacity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="split-section">
+        <div class="container split-container">
+            <div class="split-content">
+                <div style="color: var(--accent-blue); font-weight: 600; margin-bottom: 10px;">PRECISION OVER GUESSWORK</div>
+                <h2>AI-Powered Store Building</h2>
+                <p class="text-muted" style="margin-bottom: 24px;">
+                    Manual product research is slow and prone to bias. We deploy advanced AI tools to secure a distinct business advantage.
+                </p>
+                <ul style="list-style: none; color: #4B5563;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--accent-blue);">✓</span> Identify high-demand niches instantly
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--accent-blue);">✓</span> Data-driven decision support
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--accent-blue);">✓</span> Accelerated asset generation
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="split-image">
+                <div class="mock-interface">
+                    <div class="mock-line blue"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-line short"></div>
+                    <div style="margin-top: auto; display: flex; gap: 10px;">
+                        <div style="width: 30px; height: 30px; background: #F3F4F6; border-radius: 50%;"></div>
+                        <div class="mock-line" style="width: 80px; margin-bottom: 0;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2>Innovation Favors the Early.</h2>
+            <p style="color: rgba(255,255,255,0.7); max-width: 500px; margin: 20px auto;">
+                The window to leverage this combination of modern logistics and AI early-mover advantage is open now.
+            </p>
+            <a href="#" class="btn btn-primary" style="margin-top: 20px;">Schedule Strategy Call</a>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Support</a>
+            </div>
+            <div style="margin-top: 40px; font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+                &copy; 2024 Bol Accelerator. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
