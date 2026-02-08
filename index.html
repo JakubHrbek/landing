@@ -9,7 +9,7 @@
             /* Brand Palette */
             --deep-blue: #050A19;
             --surface-blue: #0B1221;
-            --accent-blue: #2997FF; /* Apple-style electric blue */
+            --accent-blue: #2997FF;
             --accent-glow: #007AFF;
             --white: #FFFFFF;
             --bg-light: #F5F7FA;
@@ -66,6 +66,16 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(41, 151, 255, 0.5);
+        }
+
+        /* --- LOGO STYLES --- */
+        .brand-logo {
+            position: absolute;
+            top: 30px;       /* Distance from top */
+            left: 40px;      /* Distance from left */
+            width: 150px;    /* Logo width - adjust as needed */
+            height: auto;
+            z-index: 20;     /* Ensures it sits above orbs/background */
         }
 
         /* --- HERO SECTION --- */
@@ -145,6 +155,7 @@
         .section { padding: 100px 20px; }
         .bg-light { background-color: var(--bg-light); }
         .bg-dark { background-color: var(--surface-blue); color: white; }
+        .bg-white { background-color: white; }
         
         .container { max-width: 1100px; margin: 0 auto; }
         
@@ -201,6 +212,93 @@
         .feature-item h3 { font-size: 1.25rem; color: var(--deep-blue); }
         .feature-item p { color: var(--text-grey); font-size: 0.95rem; line-height: 1.5; }
 
+        /* --- SECTION: STORE RESULTS --- */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+        .result-item {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            border: 1px solid #E5E7EB;
+            background: white;
+        }
+        .result-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- TESTIMONIALS (Small & Above) --- */
+        .testi-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            padding: 40px 0;
+        }
+
+        .testi-row {
+            display: flex;
+            flex-direction: column; /* Stack vertically */
+            align-items: center;    /* Center */
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testi-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border: 1px solid #E5E7EB;
+            width: 100%;
+            position: relative;
+        }
+
+        .testi-image-wrapper {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 4px solid white;
+        }
+
+        .testi-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testi-quote {
+            font-size: 1.1rem;
+            color: #374151;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .testi-author {
+            font-weight: 700;
+            color: var(--deep-blue);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .star-row {
+            color: #FFB800;
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+        }
+
+
         /* --- SECTION: AI STRATEGY --- */
         .split-section { display: flex; align-items: center; gap: 60px; }
         .split-content { flex: 1; }
@@ -245,12 +343,23 @@
             .btn-primary { width: 100%; }
             .prof-card { padding: 30px; gap: 30px; }
             .split-image { height: 300px; order: -1; }
+            .results-grid { grid-template-columns: 1fr; }
+
+            /* Mobile Logo Positioning: Centered Top */
+            .brand-logo {
+                left: 50%;
+                transform: translateX(-50%); /* Moves it back by half its width to center perfectly */
+                top: 20px;
+                width: 120px; /* Slightly smaller on mobile */
+            }
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
+        <img src="logo.png" alt="Bol Accelerator" class="brand-logo">
+
         <div class="orb-container">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
@@ -368,6 +477,27 @@
     </section>
 
     <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bol Accelerator will get you results.</h2>
+                <h2 style="color: #2997FF;">Guaranteed.</h2>
+            </div>
+            
+            <div class="results-grid">
+                <div class="result-item">
+                    <img src="image.png" alt="Store Result 1">
+                </div>
+                <div class="result-item">
+                    <img src="image copy.png" alt="Store Result 2">
+                </div>
+                <div class="result-item">
+                    <img src="image copy.png" alt="Store Result 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
         <div class="container split-section">
             <div class="split-content">
                 <div class="usp-tag">AI-Powered Infrastructure</div>
@@ -413,6 +543,57 @@
                         > READY FOR LAUNCH.
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="text-accent">Success Stories</span></h2>
+                <p>Real results from members who followed the process.</p>
+            </div>
+            
+            <div class="testi-container">
+                
+                <div class="testi-row">
+                    <div class="testi-image-wrapper">
+                        <img src="image copy 2.png" alt="Hamid">
+                    </div>
+                    <div class="testi-card">
+                        <p class="testi-quote">
+                            “Van fulltime baan naar fulltime ondernemer. Van 3k per maand in loondienst naar 10k per maand via <strong>Bol Accelerator</strong>. Dit heb ik bereikt met <strong>Bol Accelerator</strong> binnen 1 jaar met een startkapitaal van €1000. Waar gebruik ik <strong>Bol Accelerator</strong> voor? De vraag naar producten valideren, product research, pro verkoop tips en een te gekke community”
+                        </p>
+                        <div class="testi-author">Hamid Babrakzai</div>
+                        <div class="star-row">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testi-row">
+                    <div class="testi-image-wrapper">
+                        <img src="image copy 3.png" alt="Lasse en Jelle">
+                    </div>
+                    <div class="testi-card">
+                        <p class="testi-quote">
+                            “Een jaar geleden begonnen met onze <strong>e-commerce</strong> business. Inmiddels een eigen kantoor, personeel en goed op weg om een fantastische droom te verwezenlijken. <strong>Bol Accelerator</strong> heeft een groot aandeel gehad in ons succes!”
+                        </p>
+                        <div class="testi-author">Lasse van Wijk & Jelle Vooijs</div>
+                        <div class="star-row">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
