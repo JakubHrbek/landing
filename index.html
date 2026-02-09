@@ -23,18 +23,33 @@
             --glass-blur: 30px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased;
+        html {
+            background-color: var(--deep-blue); 
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--white);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden; 
+            width: 100%;
+        }
+
+        footer {
+            background: #020617;
+            padding: 60px 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: -1px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- TYPOGRAPHY UTILS --- */
@@ -68,14 +83,99 @@
             box-shadow: 0 8px 25px rgba(41, 151, 255, 0.5);
         }
 
-        /* --- LOGO STYLES --- */
+        /* --- NAVIGATION ELEMENTS --- */
         .brand-logo {
             position: absolute;
-            top: 30px;       /* Distance from top */
-            left: 40px;      /* Distance from left */
-            width: 150px;    /* Logo width - adjust as needed */
+            top: 30px;       
+            left: 40px;      
+            width: 150px;    
             height: auto;
-            z-index: 20;     /* Ensures it sits above orbs/background */
+            z-index: 20;     
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            z-index: 1000;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 10px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Animation state for the hamburger */
+        .nav-open .nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+        .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* Full Screen Glass Menu */
+        .nav-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 10, 25, 0.6);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-open .nav-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu-list {
+            list-style: none;
+            text-align: center;
+        }
+
+        .nav-menu-list li {
+            margin: 25px 0;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .nav-open .nav-menu-list li {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .nav-open .nav-menu-list li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-open .nav-menu-list li:nth-child(2) { transition-delay: 0.2s; }
+        .nav-open .nav-menu-list li:nth-child(3) { transition-delay: 0.3s; }
+        .nav-open .nav-menu-list li:nth-child(4) { transition-delay: 0.4s; }
+        .nav-open .nav-menu-list li:nth-child(5) { transition-delay: 0.5s; }
+
+        .nav-link {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -1px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
         }
 
         /* --- HERO SECTION --- */
@@ -83,11 +183,15 @@
             position: relative;
             min-height: 95vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center;    /* Center horizontally */
+            justify-content: flex-start; /* Start from top (allows padding to push down) */
+            padding-top: 150px;     /* Push content below Logo/Menu area */
             background-color: var(--deep-blue);
             overflow: hidden;
-            padding: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 60px;
         }
 
         .orb-container {
@@ -125,6 +229,7 @@
             flex-direction: column;
             align-items: center;
             gap: 24px;
+            margin-top: 20px; /* Slight extra gap from the padding-top line */
         }
 
         .hero-label {
@@ -232,7 +337,7 @@
             display: block;
         }
 
-        /* --- TESTIMONIALS (Small & Above) --- */
+        /* --- TESTIMONIALS --- */
         .testi-container {
             display: flex;
             flex-direction: column;
@@ -242,8 +347,8 @@
 
         .testi-row {
             display: flex;
-            flex-direction: column; /* Stack vertically */
-            align-items: center;    /* Center */
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
@@ -334,9 +439,6 @@
         }
         .x-icon { color: #EF4444; font-weight: bold; font-size: 1.2rem; }
 
-        /* --- FOOTER --- */
-        footer { background: #020617; padding: 60px 20px; text-align: center; color: rgba(255,255,255,0.6); }
-
         @media (max-width: 900px) {
             .prof-card, .split-section, .risk-grid { flex-direction: column; grid-template-columns: 1fr; }
             .hero-card h1 { font-size: 2.5rem; }
@@ -345,19 +447,50 @@
             .split-image { height: 300px; order: -1; }
             .results-grid { grid-template-columns: 1fr; }
 
-            /* Mobile Logo Positioning: Centered Top */
+            /* Mobile Logo: STRICTLY LEFT ALIGNED */
             .brand-logo {
-                left: 50%;
-                transform: translateX(-50%); /* Moves it back by half its width to center perfectly */
-                top: 20px;
-                width: 120px; /* Slightly smaller on mobile */
+                left: 20px; 
+                top: 25px;
+                width: 120px;
+            }
+            
+            .nav-toggle {
+                right: 20px;
+                top: 28px;
+            }
+
+            /* Adjust Hero padding for Mobile to ensure good spacing below logo */
+            .hero {
+                padding-top: 130px; /* Ensures card starts below the logo area */
+                justify-content: flex-start;
+            }
+
+            .hero-card {
+                padding: 40px 20px; /* Slightly less padding inside the card on mobile */
             }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
+    <div class="nav-overlay" id="navOverlay">
+        <ul class="nav-menu-list">
+            <li><a href="#start" class="nav-link" onclick="toggleNav()">Start</a></li>
+            <li><a href="#voor-wie" class="nav-link" onclick="toggleNav()">Voor wie</a></li>
+            <li><a href="#aanpak" class="nav-link" onclick="toggleNav()">Onze Aanpak</a></li>
+            <li><a href="#resultaten" class="nav-link" onclick="toggleNav()">Resultaten</a></li>
+            <li><a href="#ervaringen" class="nav-link" onclick="toggleNav()">Ervaringen</a></li>
+            <li><a href="#contact" class="nav-link" onclick="toggleNav()">Contact</a></li>
+        </ul>
+    </div>
+
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <header class="hero" id="start">
         <img src="logo.png" alt="Bol Accelerator" class="brand-logo">
 
         <div class="orb-container">
@@ -372,7 +505,7 @@
             
             <p>
                 De markt is volwassen geworden. Logistiek staat beter, leveranciers zijn betrouwbaarder
-en de standaarden liggen hoger. Daardoor kun je vandaag eenbol-business bouwen die
+en de standaarden liggen hoger. Daardoor kun je vandaag een bol-business bouwen die
 echt schaalbaar is + laagdrempelig - mits je het goed aanpakt.
             </p>
 
@@ -391,7 +524,7 @@ echt schaalbaar is + laagdrempelig - mits je het goed aanpakt.
         </div>
     </header>
 
-    <section class="section bg-light">
+    <section class="section bg-light" id="voor-wie">
     <div class="container">
         <div class="prof-card">
             <div class="prof-content">
@@ -422,7 +555,7 @@ wat je later moet herstellen.
     </div>
 </section>
 
-    <section class="section">
+    <section class="section" id="aanpak">
         <div class="container">
             <div class="section-header">
                 <h2>Wat je kunt verwachten</h2>
@@ -523,7 +656,7 @@ te bouwen.
     </div>
 </section>
 
-    <section class="section bg-light">
+    <section class="section bg-light" id="resultaten">
         <div class="container">
             <div class="section-header">
                 <h2>Bol Accelerator zorgt voor resultaten.</h2>
@@ -579,7 +712,7 @@ Wij helpen je die voorsprong te pakken.
         </div>
     </section>
 
-    <section class="section bg-light">
+    <section class="section bg-light" id="ervaringen">
         <div class="container">
             <div class="section-header">
                 <h2><span class="text-accent">Slimme strategie zonder risicovolle voorraad.</span></h2>
@@ -632,7 +765,7 @@ Zie het niet als een shortcut, zie het als een slimmere route.</p>
         </div>
     </section>
 
-    <section class="section bg-dark">
+    <section class="section bg-dark" id="contact">
         <div class="container risk-grid">
             <div>
                 <div class="hero-label" style="border-color: rgba(255,255,255,0.2); color: white;">We reageren snel en kijken samen of dit bij je past.</div>
@@ -690,6 +823,12 @@ trial-and-error, dan is dit het moment om te starten.
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleNav() {
+            document.body.classList.toggle('nav-open');
+        }
+    </script>
 
 </body>
 </html>
